@@ -1,0 +1,23 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Django",
+      "type": "python",
+      "request": "launch",
+      // "program": "${workspaceFolder}/00-tutorial-first-django-API/02-Django-refresh/onlinestore/manage.py",
+      "program": "${workspaceFolder}/00-tutorial-first-django-API/03-Django-web-API/onlinestore/manage.py",
+      "console": "integratedTerminal",
+      "args": [
+        "runserver",
+        "--noreload"
+        //"--nothreading"
+      ],
+      "django": true
+      // "justMyCode": true
+    }
+  ]
+}
