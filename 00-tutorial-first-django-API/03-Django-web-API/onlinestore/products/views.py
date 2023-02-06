@@ -45,6 +45,35 @@ def product_detail(request, pk):
     return response
 
 
+def manufacturer_list(request):
+    manufacturer = Manufacturer.objects.all().filter(active=True)
+    data = {"products": list(manufacturer.values())}
+    response = JsonResponse(data)
+    return response
+
+
+def manufacturer_detail(request, pk):
+    try:
+        manufacturer = Manufacturer.objects.get(pk=pk)
+        #! IMPORTANT get all the products of this manufacturer (NB we can do the thing below because in the definition of the model Product we set the manufacturer to a related name="products")
+        manufacturer_products = manufacturer.products.all()
+        data = {
+            "manufacturer": {
+                "name": manufacturer.name,
+                "location": manufacturer.location,
+                "active": manufacturer.active,
+                "products": list(manufacturer_products.values()),
+            }
+        }
+        response = JsonResponse(data)
+    except Manufacturer.DoesNotExist:
+        response = JsonResponse(
+            {"error": {"code": 404, "message": "manufacturer not found!"}}, status=404
+        )
+
+    return response
+
+
 """
 # (from 02-Django-refresh)
 #! NB the ones below are class based views

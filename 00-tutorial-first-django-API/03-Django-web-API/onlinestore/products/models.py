@@ -11,6 +11,7 @@ class Manufacturer(models.Model):
 
 
 class Product(models.Model):
+    #! NB this field will allow us to also get all the products related to a manufacturer, starting from the manufacturer (cfrr views.py --> manufacturer_details)
     manufacturer = models.ForeignKey(
         Manufacturer, on_delete=models.CASCADE, related_name="products"
     )
