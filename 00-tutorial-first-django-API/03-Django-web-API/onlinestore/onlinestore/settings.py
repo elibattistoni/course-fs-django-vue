@@ -12,6 +12,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+# ========
+## ENV
+#! pip install django-environ --> https://alicecampkin.medium.com/how-to-set-up-environment-variables-in-django-f3c4db78c55f
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+# ========
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-pq*fz1-(q2#5w2x4hohb8@b5z3&%rj+vp_y)1&qdafek-lre7x"
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
